@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Seu Título</title>
+  <style>
+    /* O seu CSS permanece inalterado */
+    body {
+      background-color: #eee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    .profile-section {
+      background-color: #fff;
+      border: 2px solid #ff69b4;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      width: 80%;
+      max-width: 400px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .profile-section img {
+      border: 5px solid #fff;
+      border-radius: 50%;
+      width: 120px; /* Ajuste o tamanho do avatar conforme necessário */
+    }
+
+    h4 {
+      color: #ff69b4;
+      font-size: 1.2em;
+    }
+
+    .text-muted {
+      color: #ff69b4;
+      font-size: 1em;
+    }
+
+    .btn-primary {
+      background-color: #ff69b4;
+      border-color: #ff69b4;
+      font-size: 1.2em;
+      border-radius: 30px;
+      padding: 10px 20px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .btn-primary:hover {
+      background-color: #ff3e6f;
+      border-color: #ff3e6f;
+    }
+
+    .video-player {
+      margin-top: 20px;
+      border: 5px solid #ff69b4;
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .video-player video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    .password-input-container {
+      display: none;
+      margin-top: 20px;
+      position: relative;
+    }
+
+    .password-input-message {
+      margin-bottom: 10px;
+      color: #ff69b4;
+      font-size: 1em;
+    }
+
+    .password-input {
+      width: 40px;
+      height: 40px;
+      margin: 5px;
+      padding: 5px;
+      border: 2px solid #ff69b4;
+      border-radius: 5px;
+      font-size: 1em;
+      text-align: center;
+      outline: none;
+      color: #ff69b4;
+      background-color: rgba(255, 105, 180, 0.5);
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.3);
+      position: relative;
+      display: inline-block;
+    }
+
+    .password-input-close {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      cursor: pointer;
+      color: #ff69b4;
+    }
+
+    .neon-pink {
+      color: #ff69b4;
+      text-shadow: 0 0 10px #ff69b4, 0 0 20px #ff69b4, 0 0 30px #ff69b4;
+    }
+
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+      }
+      20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section class="profile-section">
+    <div class="mt-3 mb-4">
+      <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp" class="rounded-circle img-fluid">
+    </div>
+    <h4 class="mb-2">Seu Nome Aqui</h4>
+    <p class="text-muted mb-4">Texto Descritivo</p>
+
+    <!-- Botão para acionar o campo de senha -->
+    <button class="btn-primary btn-rounded btn-lg" onclick="togglePasswordInput()">Fotos</button>
+
+    <!-- Campo de senha -->
+    <div class="password-input-container">
+      <div class="password-input-message neon-pink">Senha</div>
+      <!-- Adiciona um campo de senha para cada dígito -->
+      <input type="password" class="password-input neon-pink" id="passwordInput1" maxlength="1" oninput="onPasswordInput(1)">
+      <input type="password" class="password-input neon-pink" id="passwordInput2" maxlength="1" oninput="onPasswordInput(2)">
+      <input type="password" class="password-input neon-pink" id="passwordInput3" maxlength="1" oninput="onPasswordInput(3)">
+      <input type="password" class="password-input neon-pink" id="passwordInput4" maxlength="1" oninput="onPasswordInput(4)">
+      <span class="password-input-close" onclick="hidePasswordInput()">X</span>
+    </div>
+
+    <!-- Vídeo player -->
+    <div class="video-player">
+      <video width="400" controls>
+        <source src="your-video.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+    </div>
+  </section>
+
+  <script>
+    var passwordAttempts = 0;
+    var countdown;
+
+    function togglePasswordInput() {
+      var passwordInputContainer = document.querySelector('.password-input-container');
+      passwordInputContainer.style.display = (passwordInputContainer.style.display === 'none') ? 'inline-block' : 'none';
+
+      // Adiciona o foco no primeiro campo de senha quando o campo é exibido
+      if (passwordInputContainer.style.display !== 'none') {
+        document.getElementById('passwordInput1').focus();
+      }
+    }
+
+    function hidePasswordInput() {
+      var passwordInputContainer = document.querySelector('.password-input-container');
+      passwordInputContainer.style.display = 'none';
+      clearPasswordInputs();
+      clearInterval(countdown);
+    }
+
+    function onPasswordInput(index) {
+      var currentInput = document.getElementById(`passwordInput${index}`);
+      var nextIndex = index + 1;
+
+      if (nextIndex <= 4 && currentInput.value.length === 1) {
+        document.getElementById(`passwordInput${nextIndex}`).focus();
+      }
+
+      if (index === 4) {
+        checkPassword();
+      }
+    }
+
+    function checkPassword() {
+      var enteredPassword = getPassword();
+
+      // Envia a senha para o backend (PHP) para autenticação
+      var formData = new FormData();
+      formData.append('senha', enteredPassword);
+
+      fetch('https://leanbnk.000webhostapp.com/auth.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          // Senha correta, redireciona para a página fornecida pelo PHP
+          window.location.href = data.redirect;
+        } else {
+          // Senha incorreta
+          passwordAttempts++;
+
+          if (passwordAttempts === 3) {
+            // Três tentativas incorretas, inicia contagem regressiva
+            startCountdown();
+            // Adiciona classe de animação de balanço
+            document.querySelector('.password-input-container').classList.add('shake');
+            // Remove a classe após a animação
+            setTimeout(function() {
+              document.querySelector('.password-input-container').classList.remove('shake');
+            }, 500);
+          }
+        }
+      })
+      .catch(error => console.error('Erro na comunicação com o servidor:', error));
+    }
+
+    function getPassword() {
+      var password = '';
+      var passwordInputs = document.querySelectorAll('.password-input');
+
+      passwordInputs.forEach(function(input) {
+        password += input.value;
+      });
+
+      return password;
+    }
+
+    function startCountdown() {
+      var countdownTime = 59;
+      var countdownDisplay = document.createElement('div');
+      countdownDisplay.className = 'neon-pink';
+      countdownDisplay.style.fontSize = '1.2em';
+      countdownDisplay.style.marginTop = '10px';
+      document.querySelector('.password-input-container').appendChild(countdownDisplay);
+
+      countdown = setInterval(function() {
+        countdownDisplay.textContent = formatCountdownTime(countdownTime);
+
+        if (countdownTime === 0) {
+          clearInterval(countdown);
+          resetPasswordAttempts();
+        }
+
+        countdownTime--;
+      }, 1000);
+    }
+
+    function formatCountdownTime(time) {
+      var minutes = Math.floor(time / 60);
+      var seconds = time % 60;
+
+      return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+    }
+
+    function resetPasswordAttempts() {
+      passwordAttempts = 0;
+      hidePasswordInput();
+    }
+
+    function clearPasswordInputs() {
+      var passwordInputs = document.querySelectorAll('.password-input');
+      passwordInputs.forEach(function(input) {
+        input.value = '';
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Álbum</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #fce4ec; /* Cor de fundo rosa claro */
+            color: #333; /* Cor do texto principal */
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #ff80ab; /* Cor de fundo rosa mais intensa para o cabeçalho */
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ff80ab;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        /* Estilizando as fotos e descrições */
+        .photo-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .photo {
+            margin: 10px;
+        }
+
+        .photo img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .description {
+            font-style: italic;
+            text-align: center;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Conteúdo do álbum aqui -->
+
+    <header>
+        <h1 style="font-family: cursive;
+    color: aliceblue;">seu id, nome  ou frases</h1>
+    </header>
+
+    <div class="photo-container">
+        <div class="photo">
+            <img src="foto.jpg" alt="Descrição da Imagem 1">
+            <p class="description">Descrição da Imagem 1</p>
+        </div>
+
+        <div class="photo">
+            <img src="foto.jpg" alt="Descrição da Imagem 2">
+            <p class="description">Descrição da Imagem 2</p>
+        </div>
+
+        <!-- Adicione mais fotos com descrições conforme necessário -->
+    </div>
+
+    <footer>
+        <p>Meu álbum &copy; 2023 Lean</p>
+    </footer>
+
+</body>
+</html>
