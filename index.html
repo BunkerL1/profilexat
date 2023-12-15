@@ -1,7 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
+<html lang="en"><head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seu Título</title>
@@ -136,10 +133,10 @@
     <p class="text-muted mb-4">Texto Descritivo</p>
 
     <!-- Botão para acionar o campo de senha -->
-    <button class="btn-primary btn-rounded btn-lg" onclick="togglePasswordInput()">Fotos</button>
+    <button class="btn-primary btn-rounded btn-lg" onclick="togglePasswordInput()">Fotos</button><br><br>
 
     <!-- Campo de senha -->
-    <div class="password-input-container">
+    <div class="password-input-container" style="display: none;">
       <div class="password-input-message neon-pink">Senha</div>
       <!-- Adiciona um campo de senha para cada dígito -->
       <input type="password" class="password-input neon-pink" id="passwordInput1" maxlength="1" oninput="onPasswordInput(1)">
@@ -151,7 +148,7 @@
 
     <!-- Vídeo player -->
     <div class="video-player">
-      <video width="400" controls>
+      <video width="400" controls="">
         <source src="your-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
@@ -277,6 +274,7 @@
       });
     }
   </script>
-</body>
 
-</html>
+
+
+</body></html>
