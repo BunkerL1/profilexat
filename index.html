@@ -1,9 +1,10 @@
-<html lang="en"><head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Seu Título</title>
   <style>
-    /* O seu CSS permanece inalterado */
     body {
       background-color: #eee;
       display: flex;
@@ -28,7 +29,7 @@
     .profile-section img {
       border: 5px solid #fff;
       border-radius: 50%;
-      width: 120px; /* Ajuste o tamanho do avatar conforme necessário */
+      width: 120px;
     }
 
     h4 {
@@ -64,7 +65,9 @@
     }
 
     .video-player video {
-      width: 100%;
+      width: 100%; /* O vídeo ocupará 100% da largura do contêiner */
+      max-width: 100%; /* Limita a largura máxima do vídeo */
+      height: auto; /* A altura será ajustada automaticamente para manter a proporção original */
       border-radius: 10px;
     }
 
@@ -146,7 +149,7 @@
       <span class="password-input-close" onclick="hidePasswordInput()">X</span>
     </div>
 
-    <!-- Vídeo player -->
+    <!-- Vídeo player com tamanho ajustado -->
     <div class="video-player">
       <video width="400" controls="">
         <source src="nfl.mp4" type="video/mp4">
@@ -274,7 +277,5 @@
       });
     }
   </script>
-
-
-
-</body></html>
+</body>
+</html>
